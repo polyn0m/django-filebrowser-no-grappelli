@@ -26,6 +26,8 @@ var FileBrowser = {
         if (close_func) {
             FBWindow.onbeforeunload = close_func;
         }
+
+        return false;
     }
 }
 
