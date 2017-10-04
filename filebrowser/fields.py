@@ -55,6 +55,13 @@ class FileBrowseWidget(Input):
                 pass
         return render_to_string("filebrowser/custom_field.html", locals())
 
+    def build_attrs(self, extra_attrs=None, **kwargs):
+        "Helper function for building an attribute dictionary."
+        attrs = dict(self.attrs, **kwargs)
+        if extra_attrs:
+            attrs.update(extra_attrs)
+        return attrs
+
 
 class FileBrowseFormField(forms.CharField):
 
@@ -74,7 +81,7 @@ class FileBrowseFormField(forms.CharField):
 
     def clean(self, value):
         value = super(FileBrowseFormField, self).clean(value)
-        if value == '':
+        if not value:
             return value
         file_extension = os.path.splitext(value)[1].lower()
         if self.extensions and file_extension not in self.extensions:
@@ -175,6 +182,13 @@ class FileBrowseUploadWidget(Input):
             except:
                 pass
         return render_to_string("filebrowser/custom_upload_field.html", locals())
+
+    def build_attrs(self, extra_attrs=None, **kwargs):
+        "Helper function for building an attribute dictionary."
+        attrs = dict(self.attrs, **kwargs)
+        if extra_attrs:
+            attrs.update(extra_attrs)
+        return attrs
 
 
 class FileBrowseUploadFormField(forms.CharField):
