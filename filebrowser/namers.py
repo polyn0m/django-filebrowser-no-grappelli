@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 import re
 from django.utils import six
+from django.utils.encoding import force_text
 from django.utils.module_loading import import_string
-from django.utils.text import force_text
 
 from .settings import VERSIONS, VERSION_NAMER
 
